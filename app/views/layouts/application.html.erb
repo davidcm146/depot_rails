@@ -6,14 +6,35 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+  <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
+    <header class="bg-slate-400 text-white shadow-md">
+      <div class="container mx-auto flex items-center justify-between px-6 py-4">
+        <div class="flex items-center space-x-4">
+          <%= image_tag 'logo.png', alt: 'The Pragmatic Bookshelf', class: 'h-10 w-auto' %>
+          <h1 class="text-2xl font-semibold"><%= @page_title || "Depot" %></h1>
+        </div>
+        <nav>
+          <ul class="flex space-x-6 text-lg font-medium">
+            <li><%= link_to "Home", root_path, class: "hover:text-green-200 transition-colors" %></li>
+            <li><%= link_to "Products", products_path, class: "hover:text-green-200 transition-colors" %></li>
+            <li><%= link_to "Store", store_index_path, class: "hover:text-green-200 transition-colors" %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 flex-1">
+      <div class="bg-white rounded-2xl shadow-lg p-6">
+        <%= yield %>
+      </div>
     </main>
+
+    <footer class="bg-slate-400 text-white py-4 text-center text-sm">
+      &copy; <%= Time.current.year %> Depot. All rights reserved.
+    </footer>
   </body>
 </html>

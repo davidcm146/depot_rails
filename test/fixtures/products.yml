@@ -3,17 +3,17 @@
 one:
   title: MyString
   description: MyText
-  image_url: MyString.jpg
+  image_url: 123.png
   price: 9.99
 
 two:
   title: MyString1
   description: MyText
-  image_url: MyString.png
+  image_url: 123.png
   price: 9.99
 
 ruby:
   title: Ruby on Rails
   description: A web application framework for the Ruby programming language.
-  image_url: ruby_on_rails.jpg
+  image_url: 123.png
   price: 29.99
