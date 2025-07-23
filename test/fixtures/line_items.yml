@@ -3,7 +3,10 @@
 one:
   product: two
   cart: one
+  quantity: 4
 
 two:
   product: two
   cart: two
+  quantity: 3
+
