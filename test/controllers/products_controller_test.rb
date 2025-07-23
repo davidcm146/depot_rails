@@ -1,6 +1,7 @@
 require "test_helper"
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
+  fixtures :products
   setup do
     @product = products(:one)
     @title = "The Great Book #{rand(1000)}"
@@ -44,5 +45,13 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to products_url
+  end
+
+  test "should not destroy product in cart" do
+    assert_difference("Product.count", 0) do
+      delete product_url(products(:two))
+    end
+
+    assert_directed_to products_url
   end
 end
