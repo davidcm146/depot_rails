@@ -9,10 +9,10 @@
   </div>
   <div>
     <strong class="block font-medium mb-1">Image:</strong>
-    <%= product.image_url %>
+    <%= image_tag(product.image_url, class: 'object-contain w-40 h-48 shadow mr-6') %>
   </div>
   <div>
     <strong class="block font-medium mb-1">Price:</strong>
-    <%= product.price %>
+    <%= number_to_currency(product.price) %>
   </div>
 </div>
