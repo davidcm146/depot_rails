@@ -22,6 +22,9 @@
             <li><%= link_to "Home", root_path, class: "hover:text-green-200 transition-colors" %></li>
             <li><%= link_to "Products", products_path, class: "hover:text-green-200 transition-colors" %></li>
             <li><%= link_to "Store", store_index_path, class: "hover:text-green-200 transition-colors" %></li>
+            <% if session[:cart_id] && Cart.exists?(session[:cart_id]) %>
+              <li><%= link_to "Cart", cart_path(session[:cart_id]), class: "hover:text-green-200 transition-colors" %></li>
+            <% end %>
           </ul>
         </nav>
       </div>
