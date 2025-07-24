@@ -10,7 +10,7 @@
     <%= link_to "New product", new_product_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
 
-  <div id="products" class="min-w-full divide-y divide-gray-200 space-y-5">
+  <div id="product_list" class="min-w-full divide-y divide-gray-200 space-y-5">
     <% if @products.any? %>
       <% cache @products do %>
         <% @products.each do |product| %>
