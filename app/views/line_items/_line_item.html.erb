@@ -1,10 +1,22 @@
-<div id="<%= dom_id line_item %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1">Product:</strong>
-    <%= line_item.product_id %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Cart:</strong>
-    <%= line_item.cart_id %>
-  </div>
-</div>
+
+  <% if line_item == @current_item %>
+    <tr class="bg-gray-50 hover:bg-gray-100 rounded-lg shadow-sm line-item-highlight">
+    <% else %>
+      <tr class="bg-gray-50 hover:bg-gray-100 rounded-lg shadow-sm">
+      <% end %>
+      <td class="px-4 py-3 text-right text-gray-700 font-medium"><%= line_item.quantity %></td>
+      <td class="px-4 py-3 text-gray-800 font-medium">
+        <%= line_item.product.title %>
+      </td>
+      <td class="px-4 py-3 text-right font-semibold text-green-700 whitespace-nowrap">
+        <%= number_to_currency(line_item.total_price) %>
+      </td>
+      <td class="px-4 py-3 flex space-x-2 text-right text-gray-700 font-medium">
+        <%= form_with url: update_quantity_line_item_path(line_item), method: :patch, data: { turbo_stream: true }, class: "inline-flex space-x-2 items-center" do %>
+          <%= number_field_tag :quantity, line_item.quantity, min: 1, class: "w-16 text-right border-gray-300 rounded" %>
+          <%= submit_tag "Submit", class: "text-blue-600 hover:text-blue-800 font-semibold" %>
+        <% end %>
+        <%= button_to "Remove", line_item, method: :delete, data: { turbo_confirm: "Remove item?" }, class: "inline-block text-sm text-red-600 hover:text-red-800 font-semibold" %>
+      </td>
+    </tr>
+

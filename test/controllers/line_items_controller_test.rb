@@ -43,6 +43,14 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
       delete line_item_url(@line_item)
     end
 
-    assert_redirected_to line_items_url
+    follow_redirect!
+  end
+
+  test "should create line_item with turbo stream" do
+    assert_difference('LineItem.count') do
+      post line_items_url, params: { product_id: products(:ruby).id },
+      as: :turbo_stream
+    end
+    assert_response :success
   end
 end
