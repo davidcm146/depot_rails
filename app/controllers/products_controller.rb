@@ -27,6 +27,12 @@ class ProductsController < ApplicationController
       if @product.save
         format.html { redirect_to @product, notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @product }
+        Turbo::StreamsChannel.broadcast_append_to(
+          "products",
+          target: "product_list", 
+          partial: "store/product",
+          locals: { product: @product }
+        )
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -40,6 +46,7 @@ class ProductsController < ApplicationController
       if @product.update(product_params)
         format.html { redirect_to @product, notice: "Product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
+        @product.broadcast_replace_later_to "products", partial: "store/product"
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }

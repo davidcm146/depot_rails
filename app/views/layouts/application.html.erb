@@ -9,7 +9,6 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
     <header class="bg-slate-400 text-white shadow-md">
       <div class="container mx-auto flex items-center justify-between px-6 py-4">
@@ -17,25 +16,25 @@
           <%= image_tag 'logo.png', alt: 'The Pragmatic Bookshelf', class: 'h-10 w-auto' %>
           <h1 class="text-2xl font-semibold"><%= @page_title || "Depot" %></h1>
         </div>
-        <nav>
-          <ul class="flex space-x-6 text-lg font-medium">
-            <li><%= link_to "Home", root_path, class: "hover:text-green-200 transition-colors" %></li>
-            <li><%= link_to "Products", products_path, class: "hover:text-green-200 transition-colors" %></li>
-            <li><%= link_to "Store", store_index_path, class: "hover:text-green-200 transition-colors" %></li>
-            <% if session[:cart_id] && Cart.exists?(session[:cart_id]) %>
-              <li><%= link_to "Cart", cart_path(session[:cart_id]), class: "hover:text-green-200 transition-colors" %></li>
-            <% end %>
-          </ul>
-        </nav>
       </div>
     </header>
-
-    <main class="container mx-auto px-6 py-12 flex-1">
-      <div class="bg-white rounded-2xl shadow-lg p-6">
-        <%= yield %>
-      </div>
-    </main>
-
+    <div class="flex flex-1">
+      <aside class="w-96 bg-slate-200 p-6 space-y-6 shadow-inner hidden sm:block">
+        <nav class="space-y-4 text-lg font-medium">
+          <ul class="space-y-3">
+            <li><%= link_to "Home", root_path, class: "block hover:text-green-700" %></li>
+            <li><%= link_to "Products", products_path, class: "block hover:text-green-700" %></li>
+            <li><%= link_to "Store", store_index_path, class: "block hover:text-green-700" %></li>
+          </ul>
+        </nav>
+        <%= render partial: 'layouts/cart', locals: { cart: @cart }%>
+      </aside>
+      <main class="flex-1 p-6">
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+          <%= yield %>
+        </div>
+      </main>
+    </div>
     <footer class="bg-slate-400 text-white py-4 text-center text-sm">
       &copy; <%= Time.current.year %> Depot. All rights reserved.
     </footer>

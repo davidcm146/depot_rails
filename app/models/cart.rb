@@ -15,4 +15,12 @@ class Cart < ApplicationRecord
     end
     current_item
   end
+
+  def update_quantity(line_item_id, quantity)
+    line_item = line_items.find(line_item_id)
+    if line_item
+      line_item.quantity = quantity
+    end
+    line_item
+  end
 end

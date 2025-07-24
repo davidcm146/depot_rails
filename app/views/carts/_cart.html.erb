@@ -1,37 +1,21 @@
 <div id="<%= dom_id cart %>" class="w-full sm:w-auto my-8 space-y-5">
-
   <div class="overflow-x-auto rounded-xl shadow-sm bg-white">
     <table class="min-w-full table-auto text-sm text-left border-separate border-spacing-y-1">
       <thead>
         <tr class="text-gray-600 uppercase text-xs tracking-wider">
           <th class="px-4 py-2 text-right">Qty</th>
-          <th></th>
           <th class="px-4 py-2">Product</th>
           <th class="px-4 py-2 text-right">Price</th>
           <th class="px-4 py-2 text-center">Action</th>
         </tr>
       </thead>
       <tbody>
-        <% cart.line_items.each do |line_item| %>
-          <tr class="bg-gray-50 hover:bg-gray-100 rounded-lg shadow-sm">
-            <td class="px-4 py-3 text-right text-gray-700 font-medium"><%= line_item.quantity %></td>
-            <td class="text-center">&times;</td>
-            <td class="px-4 py-3 text-gray-800 font-medium">
-              <%= line_item.product.title %>
-            </td>
-            <td class="px-4 py-3 text-right font-semibold text-green-700 whitespace-nowrap">
-              <%= number_to_currency(line_item.total_price) %>
-            </td>
-            <td class="px-4 py-3 text-center">
-              <%= button_to "Remove", line_item, method: :delete, data: { turbo_confirm: "Remove item?" }, class: "inline-block text-sm text-red-600 hover:text-red-800 font-semibold" %>
-            </td>
-          </tr>
-        <% end %>
+        <%= render cart.line_items %>
       </tbody>
       <tfoot>
         <tr>
-          <th colspan="3" class="px-4 pt-6 text-right text-base font-semibold text-gray-700">Total:</th>
-          <td class="px-4 pt-6 text-right text-base font-bold text-green-800 border-t border-gray-300" colspan="2">
+          <th colspan="3" class="p-4 text-right text-base font-semibold text-gray-700">Total:</th>
+          <td class="p-4 text-right text-base font-bold text-green-800" colspan="2">
             <%= number_to_currency(cart.total_price) %>
           </td>
         </tr>
