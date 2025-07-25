@@ -3,11 +3,11 @@
 one:
   name: User1
   address: Address 1
-  email: abc@gmail.com
+  email: quachhuycm@gmail.com
   pay_type: 0
 
 two:
   name: User2
   address: Address 2
-  email: xyz@gmail.com
+  email: quachhuycm@gmail.com
   pay_type: 2
