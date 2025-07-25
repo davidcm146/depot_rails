@@ -1,0 +1,23 @@
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; background-color: #f9fafb; border-radius: 8px;">
+  <p style="font-size: 1.25rem; font-weight: 600; color: #111827;">
+    Dear <%= @order.name %>,
+  </p>
+
+  <p style="color: #374151;">
+    Thank you for your recent order from <strong>The Pragmatic Store</strong>.
+  </p>
+
+  <p style="margin-top: 1rem; color: #374151;">You ordered the following items:</p>
+
+  <ul style="margin-top: 1rem; padding-left: 0; list-style: none;">
+    <%= render partial: "order_mailer/line_item", collection: @order.line_items, as: :line_item %>
+  </ul>
+
+  <p style="margin-top: 1.5rem; color: #4b5563;">
+    We'll send you a separate e-mail when your order ships.
+  </p>
+
+  <p style="margin-top: 2rem; font-size: 0.85rem; color: #9ca3af;">
+    &copy; <%= Time.current.year %> The Pragmatic Store
+  </p>
+</div>

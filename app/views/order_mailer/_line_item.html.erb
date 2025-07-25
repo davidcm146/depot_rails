@@ -1,0 +1,5 @@
+<li style="margin-bottom: 8px; padding: 8px; border-bottom: 1px solid #e5e7eb;">
+  <strong><%= line_item.quantity %>×</strong>
+  <%= line_item.product.title %> —
+  <span style="color: #047857; font-weight: 600;"><%= number_to_currency(line_item.total_price) %></span>
+</li>
