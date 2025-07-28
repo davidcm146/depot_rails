@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :orders
   resources :line_items do
     member do 
@@ -7,6 +8,12 @@ Rails.application.routes.draw do
   end
   resources :carts
   get 'store/index'
+  get 'admin', to: 'admin#index'
+  controller :session do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
   resources :products
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
