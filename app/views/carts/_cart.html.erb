@@ -22,7 +22,7 @@
       </tfoot>
     </table>
     <%= form_with url: new_order_path, method: :get, data: { controller: "checkout" } do %>
-      <%= button_tag 'Checkout',
+      <%= button_tag t(".checkout"),
       type: "submit",
       class: 'ml-4 rounded-lg py-1 px-2 text-black bg-green-200',
       data: {

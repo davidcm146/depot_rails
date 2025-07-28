@@ -28,4 +28,48 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  layouts:
+    application:
+      title: "The Pragmatic Bookshelf"
+      products: "Products"
+      store: "Stores"
+      home: "Home"
+      logout: "Logout"
+  store:
+    index:
+      title_html: "Your Pragmatic Catalog"
+      time_access_store: "Times access the store"
+    product:
+      add_to_cart: "Add to Cart"
+  orders:
+    new:
+      legend: "Please enter your details"
+    form:
+      name: "Name"
+      address: "Address"
+      email: "Email"
+      submit: "Place order"
+      pay_type: "Pay with"
+      pay_prompt: "Select a payment method"
+      pay_types:
+        "Check":           "Check"
+        "Credit card":     "Credit Card"
+        "Purchase order":  "Purchase Order"
+    check:
+      routing_number: "Routing number"
+      account_number: "Account number"
+    credit_card:
+      credit_card_number: "Credit card number"
+      expiration_date: "Expiration date"
+    purchase_order:
+      po_number: "PO number"
+  carts:
+    checkout: "Checkout"
+  number:
+    currency:
+      format:
+        unit: "$"
+        precision: 2
+        separator: "."
+        delimiter: ","
+  thanks: "Thank you for your order."

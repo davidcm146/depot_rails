@@ -1,20 +1,24 @@
 Rails.application.routes.draw do
-  resources :users
-  resources :orders
-  resources :line_items do
-    member do 
-      patch :update_quantity
+  scope '(:locale)' do
+    get "store/index"
+    root "store#index"
+    resources :carts
+    resources :products
+    resources :users
+    resources :orders
+    resources :line_items do
+      member do 
+        patch :update_quantity
+      end
     end
   end
-  resources :carts
-  get 'store/index'
+  
   get 'admin', to: 'admin#index'
   controller :session do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
   end
-  resources :products
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -22,5 +26,4 @@ Rails.application.routes.draw do
   # get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "store#index"
 end

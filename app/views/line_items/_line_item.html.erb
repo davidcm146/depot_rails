@@ -8,7 +8,7 @@
       <%= line_item.product.title %>
     </td>
     <td class="px-4 py-3 text-right font-semibold text-green-700 whitespace-nowrap">
-      <%= number_to_currency(line_item.total_price) %>
+      <%= localized_currency(line_item.total_price) %>
     </td>
     <td class="px-4 py-3 flex space-x-2 text-right text-gray-700 font-medium">
       <%= form_with url: update_quantity_line_item_path(line_item), method: :patch, data: { turbo_stream: true }, class: "inline-flex space-x-2 items-center" do %>
