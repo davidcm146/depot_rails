@@ -1,0 +1,66 @@
+vi:
+  activerecord:
+    models:
+      order: "Đơn hàng"
+    attributes:
+      order:
+        name: "Họ tên"
+        address: "Địa chỉ"
+        email: "Email"
+        pay_type: "Phương thức thanh toán"
+    errors:
+      messages:
+        blank: "không được để trống"
+        inclusion: "không hợp lệ"
+  errors:
+    template:
+      header:
+        one: "Có một lỗi xảy ra khi xử lý đơn hàng của bạn"
+        other: "Có %{count} lỗi xảy ra khi xử lý đơn hàng của bạn"
+      body: "Vui lòng kiểm tra các trường bên dưới và thử lại."
+  layouts:
+    application:
+      title: "Cửa hàng Sách Pragmatic"
+      products: "Sản phẩm"
+      store: "Cửa hàng"
+      home: "Trang chủ"
+      logout: "Đăng xuất"
+  store:
+    index:
+      title_html: "Danh mục Pragmatic của bạn"
+      time_access_store: "Số lần bạn truy cập cửa hàng"
+    product:
+      add_to_cart: "Thêm vào giỏ hàng"
+  orders:
+    form:
+      legend: "Nhập thông tin của bạn"
+      name: "Họ tên"
+      address: "Địa chỉ"
+      email: "Email"
+      submit: "Đặt hàng"
+      pay_type: "Phương thức thanh toán"
+      pay_prompt: "Lựa chọn phương thức thanh toán"
+      pay_types:
+        "Check":           "Check"
+        "Credit card":     "Thẻ tín dụng"
+        "Purchase order":  "Đơn đặt hàng"
+    check:
+      routing_number: "Số định tuyến"
+      account_number: "Số tài khoản"
+    credit_card:
+      credit_card_number: "Số thẻ tín dụng"
+      expiration_date: "Ngày hết hạn"
+    purchase_order:
+      po_number: "Số PO"
+  carts:
+    cart:
+      checkout: "Thanh toán"
+  number:
+    currency:
+      format:
+        unit: "đ"
+        precision: 2
+        separator: "."
+        delimiter: ","
+  thanks: "Cảm ơn vì đã đặt hàng tại Shop."
+  

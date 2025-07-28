@@ -10,30 +10,35 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
-    <header class="bg-slate-400 text-white shadow-md">
+    <header class="bg-slate-400 flex shadow-md">
       <div class="container mx-auto flex items-center justify-between px-6 py-4">
         <div class="flex items-center space-x-4">
           <%= image_tag 'logo.png', alt: 'The Pragmatic Bookshelf', class: 'h-10 w-auto' %>
-          <h1 class="text-2xl font-semibold"><%= @page_title || "Depot" %></h1>
+          <h1 class="text-2xl font-semibold"><%= t('.title') || "Depot" %></h1>
         </div>
       </div>
+      <aside data-controller="locale" class="flex items-center px-6">
+        <%= form_tag store_index_path, method: :get, class: 'locale' do %>
+          <%= select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onChange: "this.form.submit()" %>
+          <%= submit_tag 'submit', data: { "locale-target": 'submit' } %>
+        <% end%>
+      </aside>
     </header>
     <div class="flex">
       <aside class="bg-slate-200 p-6 space-y-6 shadow-inner hidden sm:block">
         <nav class="space-y-4 text-lg font-medium">
           <ul class="space-y-3">
-            <li><%= link_to "Home", root_path, class: "block hover:text-green-700" %></li>
-            <li><%= link_to "Products", products_path, class: "block hover:text-green-700" %></li>
-            <li><%= link_to "Store", store_index_path, class: "block hover:text-green-700" %></li>
+            <li><%= link_to t(".home"), root_path, class: "block hover:text-green-700" %></li>
+            <li><%= link_to t('.products'), products_path, class: "block hover:text-green-700" %></li>
+            <li><%= link_to t('.store'), store_index_path, class: "block hover:text-green-700" %></li>
           </ul>
           <% if session[:user_id] %>
             <ul class="space-y-3">
-              <li><%= link_to "Products", products_path, class: "block hover:text-green-700" %></li>
-              <li><%= link_to "Orders", orders_path, class: "block hover:text-green-700" %></li>
-              <li><%= link_to "Users", users_path, class: "block hover:text-green-700" %></li>
-              <%= button_to "Logout", logout_path, method: :delete, class: "text-red-700 hover:underline bg-transparent border-0 p-0" %>
+              <li><%= link_to t('.products'), products_path, class: "block hover:text-green-700" %></li>
+              <li><%= link_to t(".orders"), orders_path, class: "block hover:text-green-700" %></li>
+              <li><%= link_to t(".users"), users_path, class: "block hover:text-green-700" %></li>
+              <%= button_to t(".logout"), logout_path, method: :delete, class: "text-red-700 hover:underline bg-transparent border-0 p-0" %>
             </ul>
-
           <% end %>
         </nav>
         <%= render partial: 'layouts/cart', locals: { cart: @cart } %>
