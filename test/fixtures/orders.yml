@@ -11,3 +11,15 @@ two:
   address: Address 2
   email: quachhuycm@gmail.com
   pay_type: 2
+
+another_one:  
+  name: Dave Thomas
+  address: 123 Any St
+  email: test1@gmail.com
+  pay_type: 2
+
+other_customer:  
+  name: Chris Jones
+  address: 456 Somewhere Ln
+  email: chris@nowhere.net
+  pay_type: 2

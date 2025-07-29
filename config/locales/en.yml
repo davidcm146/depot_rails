@@ -34,6 +34,8 @@ en:
       products: "Products"
       store: "Stores"
       home: "Home"
+      login: "Login"
+      signup: "Sign Up"
       logout: "Logout"
   store:
     index:

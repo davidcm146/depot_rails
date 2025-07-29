@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authorize, only: %i[new create]
   before_action :set_user, only: %i[ show edit update destroy ]
 
   # GET /users or /users.json
@@ -19,13 +20,11 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # POST /users or /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
-        format.html { redirect_to users_path, notice: "User #{@user.name} was successfully created." }
+        format.html { redirect_to login_url }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,15 +48,15 @@ class UsersController < ApplicationController
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @user.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to users_path, status: :see_other, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
-
-    rescue_from 'User::Error' do |exception|  
-      redirect_to users_url, notice: exception.message
+    begin
+      @user.destroy!
+    
+      respond_to do |format|
+        format.html { redirect_to users_path, status: :see_other, notice: "User was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    rescue User::Error => e
+      redirect_to users_path, alert: e.message
     end
   end
 

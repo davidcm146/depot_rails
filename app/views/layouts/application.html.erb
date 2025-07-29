@@ -24,22 +24,22 @@
         <% end%>
       </aside>
     </header>
-    <div class="flex">
+    <div class="flex min-h-screen">
       <aside class="bg-slate-200 p-6 space-y-6 shadow-inner hidden sm:block">
         <nav class="space-y-4 text-lg font-medium">
           <ul class="space-y-3">
-            <li><%= link_to t(".home"), root_path, class: "block hover:text-green-700" %></li>
-            <li><%= link_to t('.products'), products_path, class: "block hover:text-green-700" %></li>
-            <li><%= link_to t('.store'), store_index_path, class: "block hover:text-green-700" %></li>
-          </ul>
-          <% if session[:user_id] %>
-            <ul class="space-y-3">
+            <% if session[:user_id] %>
               <li><%= link_to t('.products'), products_path, class: "block hover:text-green-700" %></li>
-              <li><%= link_to t(".orders"), orders_path, class: "block hover:text-green-700" %></li>
               <li><%= link_to t(".users"), users_path, class: "block hover:text-green-700" %></li>
               <%= button_to t(".logout"), logout_path, method: :delete, class: "text-red-700 hover:underline bg-transparent border-0 p-0" %>
-            </ul>
-          <% end %>
+            <% else %>
+              <li><%= link_to t(".home"), root_path, class: "block hover:text-green-700" %></li>
+              <li><%= link_to t('.products'), products_path, class: "block hover:text-green-700" %></li>
+              <li><%= link_to t('.store'), store_index_path, class: "block hover:text-green-700" %></li>
+              <li><%= link_to t('.login'), login_path, class: "block hover:text-green-700" %></li>
+              <li><%= link_to t('.signup'), signup_path, class: "block hover:text-green-700" %></li>
+            <% end %>
+          </ul>
         </nav>
         <%= render partial: 'layouts/cart', locals: { cart: @cart } %>
       </aside>
