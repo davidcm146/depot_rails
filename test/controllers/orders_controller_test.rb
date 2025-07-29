@@ -7,9 +7,10 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
   test "requires item in cart" do
     get new_order_url
-    assert redirected_to store_index_path
-    assert equal 'Your cart is empty', notice
+    assert_redirected_to store_index_path
+    assert_equal 'Your cart is empty', flash[:notice]
   end
+
 
   test "should get index" do
     get orders_url
